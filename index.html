@@ -148,47 +148,66 @@
             }
 
             appendExp.onclick = function(){
-                input+="^";
+                if(input[input.length - 1] != "%" && input[input.length - 1] != "x" && input[input.length - 1] != "," && input[input.length - 1] != "-" && input[input.length - 1] != "+" && input[input.length - 1] != "√" && input[input.length - 1] != "/" && input[input.length - 1] != "^" && input.length > 0){
+                    input+="^";
+                }
                 displayInput();
             }
 
             appendSqrt.onclick = function(){
-                input+="√";
+                if(input[input.length - 1] != "%" && input[input.length - 1] != "x" && input[input.length - 1] != "," && input[input.length - 1] != "-" && input[input.length - 1] != "+" && input[input.length - 1] != "√" && input[input.length - 1] != "/" && input[input.length - 1] != "^" != "√"){
+                    input+="√";
+                }
                 displayInput();
             }
 
             appendDiv.onclick = function(){
-                input+="/";
+                if(input[input.length - 1] != "%" && input[input.length - 1] != "x" && input[input.length - 1] != "," && input[input.length - 1] != "-" && input[input.length - 1] != "+" && input[input.length - 1] != "√" && input[input.length - 1] != "/" && input[input.length - 1] != "^" && input.length > 0){
+                    input+="/";
+                }
                 displayInput();
             }
 
             appendSum.onclick = function(){
-                input+="+";
+                if(input[input.length - 1] != "%" && input[input.length - 1] != "x" && input[input.length - 1] != "," && input[input.length - 1] != "-" && input[input.length - 1] != "+" && input[input.length - 1] != "√" && input[input.length - 1] != "/" && input[input.length - 1] != "^"&& input.length > 0){
+                    input+="+";
+                }
                 displayInput();
             }
 
             appendMinus.onclick = function(){
-                input+="-";
+                if(input[input.length - 1] != "%" && input[input.length - 1] != "x" && input[input.length - 1] != "," && input[input.length - 1] != "-" && input[input.length - 1] != "+" && input[input.length - 1] != "√" && input[input.length - 1] != "/" && input[input.length - 1] != "^" && input.length > 0){
+                    input+="-";
+                }
                 displayInput();
             }
 
             appendX.onclick = function(){
-                input+="x";
+                if(input[input.length - 1] != "x" && input.length > 0 && input[input.length - 1] != "%" && input[input.length - 1] != "x" && input[input.length - 1] != "," && input[input.length - 1] != "-" && input[input.length - 1] != "+" && input[input.length - 1] != "√" && input[input.length - 1] != "/" && input[input.length - 1] != "^"){
+                    input+="x";
+                }
                 displayInput();
             }
 
             appendVirg.onclick = function(){
-                input+=",";
-                displayInput();
+                console.log(input);
+                if(input[input.length - 1] == undefined && input[input.length - 1] != "%" && input[input.length - 1] != "x" && input[input.length - 1] != "," && input[input.length - 1] != "-" && input[input.length - 1] != "+" && input[input.length - 1] != "√" && input[input.length - 1] != "/" && input[input.length - 1] != "^"){
+                    input+="0,";
+                    displayInput();
+                }
             }
 
             appendPerc.onclick = function(){
-                input+="%";
+                if(input[input.length - 1] != "%" && input[input.length - 1] != "x" && input[input.length - 1] != "," && input[input.length - 1] != "-" && input[input.length - 1] != "+" && input[input.length - 1] != "√" && input[input.length - 1] != "/" && input[input.length - 1] != "^" && input.length > 0){
+                    input+="%";
+                }
                 displayInput();
             }
 
             append0.onclick = function(){
-                input+="0";
+                if(input.length > 0){
+                    input+="0";
+                }
                 displayInput();
             }
 
@@ -252,7 +271,7 @@
             }
 
             result.onclick = function(){
-
+                
             }
 
 
