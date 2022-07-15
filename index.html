@@ -36,11 +36,11 @@
             margin: 3rem auto; 
             border-radius: 10px;
             display: flex;
-            align-items: flex-end;
+            align-items: center;
             justify-content: end;
         }
-        #span-display {
-            font-size: 5rem;
+        #code-display {
+            font-size: 50px;
             
         }
         .teclado {
@@ -77,43 +77,188 @@
 </head>
 <body>
     <div class="calculator">
-        <div class="display"><span name="display-content" id="span-display" >0</span></div>
+        <div class="display"><code name="display-content" id="code-display" >0</code></div>
         <div class="teclado">
             <div class="teclas b-gap">
-                <button class="tecla r-gap">7</button>
-                <button class="tecla r-gap">8</button>
-                <button class="tecla r-gap">9</button>
-                <button class="tecla">/</button>
+                <button id="tc" class="tecla r-gap">C</button>
+                <button id="texp" class="tecla r-gap">^</button>
+                <button id="tsqrt" class="tecla r-gap">&#8730;</button>
+                <button id="td" class="tecla">/</button>
             </div>
             <div class="teclas b-gap">
-                <button class="tecla r-gap">7</button>
-                <button class="tecla r-gap">8</button>
-                <button class="tecla r-gap">9</button>
-                <button class="tecla">X</button>
+                <button id="t7" class="tecla r-gap">7</button>
+                <button id="t8" class="tecla r-gap">8</button>
+                <button id="t9" class="tecla r-gap">9</button>
+                <button id="tx" class="tecla">X</button>
             </div>
             <div class="teclas b-gap">
-                <button class="tecla r-gap">4</button>
-                <button class="tecla r-gap">5</button>
-                <button class="tecla r-gap">6</button>
-                <button class="tecla">-</button>
+                <button id="t4" class="tecla r-gap">4</button>
+                <button id="t5" class="tecla r-gap">5</button>
+                <button id="t6" class="tecla r-gap">6</button>
+                <button id="tm" class="tecla">-</button>
             </div>
             <div class="teclas b-gap">
-                <button class="tecla r-gap">1</button>
-                <button class="tecla r-gap">2</button>
-                <button class="tecla r-gap">3</button>
-                <button class="tecla">+</button>
+                <button id="t1" class="tecla r-gap">1</button>
+                <button id="t2" class="tecla r-gap">2</button>
+                <button id="t3" class="tecla r-gap">3</button>
+                <button id="tsum" class="tecla">+</button>
             </div>
             <div class="teclas">
-                <button class="tecla r-gap">0</button>
-                <button class="tecla r-gap">,</button>
-                <button class="tecla r-gap">%</button>
-                <button class="tecla" id="equal">=</button>
+                <button id="t0" class="tecla r-gap">0</button>
+                <button id="tv" class="tecla r-gap">,</button>
+                <button id="tp" class="tecla r-gap">%</button>
+                <button id="teq" class="tecla" id="equal">=</button>
             </div>
         </div>
     </div>
 
 
     <script>
+        window.onload = function(){
+            var input = "";
+            var output = 0;
+            var show = "";
+
+            var display = document.getElementById("code-display");
+
+            var del = document.getElementById("tc");
+            var appendExp = document.getElementById("texp");
+            var appendSqrt = document.getElementById("tsqrt");
+            var appendDiv = document.getElementById("td");
+            var appendSum = document.getElementById("tsum");
+            var appendMinus = document.getElementById("tm");
+            var appendX = document.getElementById("tx");
+            var appendVirg = document.getElementById("tv");
+            var appendPerc = document.getElementById("tp");
+            var append0 = document.getElementById("t0");
+            var append9 = document.getElementById("t9");
+            var append8 = document.getElementById("t8");
+            var append7 = document.getElementById("t7");
+            var append6 = document.getElementById("t6");
+            var append5 = document.getElementById("t5");
+            var append4 = document.getElementById("t4");
+            var append3 = document.getElementById("t3");
+            var append2 = document.getElementById("t2");
+            var append1 = document.getElementById("t1");
+            var result = document.getElementById("teq");
+            
+            del.onclick = function() {
+                input = input.slice(0, -1);
+                displayInput();
+            }
+
+            appendExp.onclick = function(){
+                input+="^";
+                displayInput();
+            }
+
+            appendSqrt.onclick = function(){
+                input+="√";
+                displayInput();
+            }
+
+            appendDiv.onclick = function(){
+                input+="/";
+                displayInput();
+            }
+
+            appendSum.onclick = function(){
+                input+="+";
+                displayInput();
+            }
+
+            appendMinus.onclick = function(){
+                input+="-";
+                displayInput();
+            }
+
+            appendX.onclick = function(){
+                input+="x";
+                displayInput();
+            }
+
+            appendVirg.onclick = function(){
+                input+=",";
+                displayInput();
+            }
+
+            appendPerc.onclick = function(){
+                input+="%";
+                displayInput();
+            }
+
+            append0.onclick = function(){
+                input+="0";
+                displayInput();
+            }
+
+            append9.onclick = function(){
+                input+="9";
+                displayInput();
+            }
+
+            append8.onclick = function(){
+                input+="8";
+                displayInput();
+            }
+
+            append7.onclick = function(){
+                input+="7";
+                displayInput();
+            }
+            
+            append6.onclick = function(){
+                input+="6";
+                displayInput();
+            }
+            
+            append5.onclick = function(){
+                input+="5";
+                displayInput();
+            }
+            
+            append4.onclick = function(){
+                input+="4";
+                displayInput();
+            }
+            
+            append3.onclick = function(){
+                input+="3";
+                displayInput();
+            }
+            
+            append2.onclick = function(){
+                input+="2";
+                displayInput();
+            }
+            
+            append1.onclick = function(){
+                input+="1";
+                displayInput();
+            }
+
+            function displayInput() {
+                if(input.length > 11){
+                    for(var i = 11; i > 0; i--){
+                        show+=input[input.length - i];
+                    }
+                    display.innerHTML = show;
+                }else if(input.length > 0 && input.length <= 11) {
+                    display.innerHTML = input;
+                }else {
+                    display.innerHTML = "0";
+                }
+                show = "";
+            }
+
+            result.onclick = function(){
+
+            }
+
+
+            
+
+        }
 
     </script>
 </body>
