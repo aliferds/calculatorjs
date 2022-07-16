@@ -116,7 +116,8 @@
     <script>
         window.onload = function(){
             var input = "";
-            var output = 0;
+            var number = [];
+            var operations = [];
             var show = "";
 
             var display = document.getElementById("code-display");
@@ -141,65 +142,169 @@
             var append2 = document.getElementById("t2");
             var append1 = document.getElementById("t1");
             var result = document.getElementById("teq");
+
+            function hasVirg(s){
+                for(var i = 0; i < s.length; i++){
+                    if(s[i] == "."){
+                        return true;
+                    }
+                }
+                return false;
+            }
             
             del.onclick = function() {
-                input = input.slice(0, -1);
+                show = show.slice(0, -1);
+                // console.log(operations);
+                if(input.length < 1){
+                    operations.pop();
+                    input = "" + number[number.length - 1];
+                    // console.log(input);
+                    number.pop();
+                }else {
+                    input = input.slice(0, -1);
+                }
+                // console.log(operations);
                 displayInput();
             }
 
             appendExp.onclick = function(){
-                if(input[input.length - 1] != "%" && input[input.length - 1] != "x" && input[input.length - 1] != "," && input[input.length - 1] != "-" && input[input.length - 1] != "+" && input[input.length - 1] != "√" && input[input.length - 1] != "/" && input[input.length - 1] != "^" && input.length > 0){
-                    input+="^";
+                if(input[input.length - 1] != "%" && 
+                   input[input.length - 1] != "x" && 
+                   input[input.length - 1] != "." && 
+                   input[input.length - 1] != "-" && 
+                   input[input.length - 1] != "+" && 
+                   input[input.length - 1] != "√" && 
+                   input[input.length - 1] != "/" && 
+                   input[input.length - 1] != "^" && 
+                   input.length > 0){
+                    number.push(parseFloat(input));
+                    input="";
+                    show+="^";
+                    operations.push("exp");
                 }
                 displayInput();
             }
 
             appendSqrt.onclick = function(){
-                if(input[input.length - 1] != "%" && input[input.length - 1] != "x" && input[input.length - 1] != "," && input[input.length - 1] != "-" && input[input.length - 1] != "+" && input[input.length - 1] != "√" && input[input.length - 1] != "/" && input[input.length - 1] != "^" != "√"){
-                    input+="√";
+                if(input[input.length - 1] != "%" && 
+                   input[input.length - 1] != "." && 
+                   input[input.length - 1] != "√" && 
+                   input[input.length - 1] != "^"){
+                    show+="√";
+                    number.push(parseFloat(input));
+                    input="";
+                    operations.push("sqrt");
                 }
                 displayInput();
             }
 
             appendDiv.onclick = function(){
-                if(input[input.length - 1] != "%" && input[input.length - 1] != "x" && input[input.length - 1] != "," && input[input.length - 1] != "-" && input[input.length - 1] != "+" && input[input.length - 1] != "√" && input[input.length - 1] != "/" && input[input.length - 1] != "^" && input.length > 0){
-                    input+="/";
+                if(input[input.length - 1] != "%" && 
+                   input[input.length - 1] != "x" && 
+                   input[input.length - 1] != "." && 
+                   input[input.length - 1] != "-" && 
+                   input[input.length - 1] != "+" && 
+                   input[input.length - 1] != "√" && 
+                   input[input.length - 1] != "/" && 
+                   input[input.length - 1] != "^" && 
+                   input.length > 0){
+                    number.push(parseFloat(input));
+                    input="";
+                    show+="/";
+                    
+                    operations.push("/");
                 }
                 displayInput();
             }
 
             appendSum.onclick = function(){
-                if(input[input.length - 1] != "%" && input[input.length - 1] != "x" && input[input.length - 1] != "," && input[input.length - 1] != "-" && input[input.length - 1] != "+" && input[input.length - 1] != "√" && input[input.length - 1] != "/" && input[input.length - 1] != "^"&& input.length > 0){
-                    input+="+";
+                if(input[input.length - 1] != "%" && 
+                   input[input.length - 1] != "x" && 
+                   input[input.length - 1] != "." && 
+                   input[input.length - 1] != "-" && 
+                   input[input.length - 1] != "+" && 
+                   input[input.length - 1] != "√" && 
+                   input[input.length - 1] != "/" && 
+                   input[input.length - 1] != "^" && 
+                   input.length > 0){
+                    number.push(parseFloat(input));
+                    input="";
+                    show+="+";
+                    operations.push("+");
                 }
                 displayInput();
             }
 
             appendMinus.onclick = function(){
-                if(input[input.length - 1] != "%" && input[input.length - 1] != "x" && input[input.length - 1] != "," && input[input.length - 1] != "-" && input[input.length - 1] != "+" && input[input.length - 1] != "√" && input[input.length - 1] != "/" && input[input.length - 1] != "^" && input.length > 0){
-                    input+="-";
+                if(input[input.length - 1] != "%" && 
+                   input[input.length - 1] != "x" && 
+                   input[input.length - 1] != "." && 
+                   input[input.length - 1] != "-" && 
+                   input[input.length - 1] != "+" && 
+                   input[input.length - 1] != "√" && 
+                   input[input.length - 1] != "/" && 
+                   input[input.length - 1] != "^" && 
+                   input.length > 0){
+                    number.push(parseFloat(input));
+                    input="";
+                    show+="-";
+                    operations.push("-");
                 }
                 displayInput();
             }
 
             appendX.onclick = function(){
-                if(input[input.length - 1] != "x" && input.length > 0 && input[input.length - 1] != "%" && input[input.length - 1] != "x" && input[input.length - 1] != "," && input[input.length - 1] != "-" && input[input.length - 1] != "+" && input[input.length - 1] != "√" && input[input.length - 1] != "/" && input[input.length - 1] != "^"){
-                    input+="x";
+                if(input[input.length - 1] != "x" && 
+                   input.length > 0 && 
+                   input[input.length - 1] != "%" && 
+                   input[input.length - 1] != "x" && 
+                   input[input.length - 1] != "." && 
+                   input[input.length - 1] != "-" && 
+                   input[input.length - 1] != "+" && 
+                   input[input.length - 1] != "√" && 
+                   input[input.length - 1] != "/" && 
+                   input[input.length - 1] != "^"){
+                    number.push(parseFloat(input));
+                    input="";
+                    show+="x";
+                    operations.push("x");
                 }
                 displayInput();
             }
 
             appendVirg.onclick = function(){
                 console.log(input);
-                if(input[input.length - 1] == undefined && input[input.length - 1] != "%" && input[input.length - 1] != "x" && input[input.length - 1] != "," && input[input.length - 1] != "-" && input[input.length - 1] != "+" && input[input.length - 1] != "√" && input[input.length - 1] != "/" && input[input.length - 1] != "^"){
-                    input+="0,";
-                    displayInput();
+                if(input[input.length - 1] == undefined && 
+                   input[input.length - 1] != "%" && 
+                   input[input.length - 1] != "x" && 
+                   input[input.length - 1] != "." && 
+                   input[input.length - 1] != "-" && 
+                   input[input.length - 1] != "+" && 
+                   input[input.length - 1] != "√" && 
+                   input[input.length - 1] != "/" && 
+                   input[input.length - 1] != "^"){
+                    input+="0.";
+                    show+="0.";
+                }else if(input[input.length - 1] != undefined && hasVirg(input) != true){
+                    input+=".";
+                    show+=".";
                 }
+                displayInput();
             }
 
             appendPerc.onclick = function(){
-                if(input[input.length - 1] != "%" && input[input.length - 1] != "x" && input[input.length - 1] != "," && input[input.length - 1] != "-" && input[input.length - 1] != "+" && input[input.length - 1] != "√" && input[input.length - 1] != "/" && input[input.length - 1] != "^" && input.length > 0){
-                    input+="%";
+                if(input[input.length - 1] != "%" && 
+                   input[input.length - 1] != "x" && 
+                   input[input.length - 1] != "." && 
+                   input[input.length - 1] != "-" && 
+                   input[input.length - 1] != "+" && 
+                   input[input.length - 1] != "√" && 
+                   input[input.length - 1] != "/" && 
+                   input[input.length - 1] != "^" && 
+                   input.length > 0){
+                    number.push(parseFloat(input));
+                    input="";
+                    show+="%";
                 }
                 displayInput();
             }
@@ -207,76 +312,102 @@
             append0.onclick = function(){
                 if(input.length > 0){
                     input+="0";
+                    show+="0";
                 }
                 displayInput();
             }
 
             append9.onclick = function(){
                 input+="9";
+                show+="9";
                 displayInput();
             }
 
             append8.onclick = function(){
                 input+="8";
+                show+="8";
                 displayInput();
             }
 
             append7.onclick = function(){
                 input+="7";
+                show+="7";
                 displayInput();
             }
             
             append6.onclick = function(){
                 input+="6";
+                show+="6";
                 displayInput();
             }
             
             append5.onclick = function(){
                 input+="5";
+                show+="5";
                 displayInput();
             }
             
             append4.onclick = function(){
                 input+="4";
+                show+="4";
                 displayInput();
             }
             
             append3.onclick = function(){
                 input+="3";
+                show+="3";
                 displayInput();
             }
             
             append2.onclick = function(){
                 input+="2";
+                show+="2";
                 displayInput();
             }
             
             append1.onclick = function(){
                 input+="1";
+                show+="1";
                 displayInput();
             }
 
             function displayInput() {
-                if(input.length > 11){
+                var showLessCharacters = "";
+                if(show.length > 11){
                     for(var i = 11; i > 0; i--){
-                        show+=input[input.length - i];
+                        showLessCharacters+=show[show.length - i];
                     }
+                    display.innerHTML = showLessCharacters;
+                }else if(show.length > 0 && show.length <= 11) {
                     display.innerHTML = show;
-                }else if(input.length > 0 && input.length <= 11) {
-                    display.innerHTML = input;
                 }else {
                     display.innerHTML = "0";
                 }
-                show = "";
+                showLessCharacters="";
+            }
+
+            function splitEquation(){
+                for(var i = 0; i < input.length; i++){
+                    if(!isNaN(parseFloat(input[i])) && isFinite(input[i])){
+                        console.log(true);
+                        
+                    }else {
+                        if(input[i] == "√"){
+                            console.log("raiz");
+                        }
+                    }
+                }
             }
 
             result.onclick = function(){
-                
+                splitEquation();
+
+                displayInput();
+                input = "";
             }
 
 
             
-
         }
 
     </script>
